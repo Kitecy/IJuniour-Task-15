@@ -26,6 +26,28 @@ public class Health : MonoBehaviour
             Died?.Invoke();
     }
 
+    public int StealHealth(int value)
+    {
+        if (value < 0)
+            return 0;
+
+        if (_value < value)
+        {
+            int tempValue = _value;
+            _value = 0;
+            ValueChanged?.Invoke(_value);
+            return tempValue;
+        }
+
+        _value -= value;
+        ValueChanged?.Invoke(_value);
+
+        if (_value <= 0)
+            Died?.Invoke();
+
+        return _value;
+    }
+
     public void Heal(int value)
     {
         _value += Mathf.Clamp(value, 0, MaxValue);

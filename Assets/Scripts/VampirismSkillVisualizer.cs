@@ -63,7 +63,8 @@ public class VampirismSkillVisualizer : MonoBehaviour
 
     private void DrawArea()
     {
-        _useArea.transform.localScale = new Vector3(_skill.Radius, _skill.Radius, 1);
+        float radius = _skill.Radius + _skill.Radius;
+        _useArea.transform.localScale = new Vector3(radius, radius, 1);
         _useArea.enabled = true;
     }
 
